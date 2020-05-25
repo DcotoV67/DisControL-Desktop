@@ -17,8 +17,6 @@ public class Controller {
         robot.mouseMove(MouseInfo.getPointerInfo().getLocation().x + x, MouseInfo.getPointerInfo().getLocation().y + y);
 
     }
-
-
     public void clikL(boolean clickL){
 
         if (clickL){
@@ -49,22 +47,25 @@ public class Controller {
 
         // En función del tamaño de la String, ejecutamos introducimos el último caracter de la String recibida por el Firebase, o ejecutamos el boton "BORRAR".
         // Si el caracter es una mayuscula, tenemos que ejecutar el boton "MAYUS"
-        if (s.length() < tamanoTexto) {
+        if (s.length() == 1 && tamanoTexto > 2 || tamanoTexto <s.length()){
+
+            if (Character.isUpperCase(caracter)){
+
+                robot.keyPress(KeyEvent.VK_SHIFT);
+                robot.keyPress(KeyEvent.getExtendedKeyCodeForChar(ascii));
+                robot.keyRelease(KeyEvent.getExtendedKeyCodeForChar(ascii));
+                robot.keyRelease(KeyEvent.VK_SHIFT);
+
+            } else {
+
+                robot.keyPress(KeyEvent.getExtendedKeyCodeForChar(ascii));
+                robot.keyRelease(KeyEvent.getExtendedKeyCodeForChar(ascii));
+
+            }
+        } else if (s.length() < tamanoTexto) {
 
             robot.keyPress(KeyEvent.VK_BACK_SPACE);
             robot.keyRelease(KeyEvent.VK_BACK_SPACE);
-
-        } else if (Character.isUpperCase(caracter)){
-
-            robot.keyPress(KeyEvent.VK_SHIFT);
-            robot.keyPress(KeyEvent.getExtendedKeyCodeForChar(ascii));
-            robot.keyRelease(KeyEvent.getExtendedKeyCodeForChar(ascii));
-            robot.keyRelease(KeyEvent.VK_SHIFT);
-
-        } else {
-
-            robot.keyPress(KeyEvent.getExtendedKeyCodeForChar(ascii));
-            robot.keyRelease(KeyEvent.getExtendedKeyCodeForChar(ascii));
 
         }
 

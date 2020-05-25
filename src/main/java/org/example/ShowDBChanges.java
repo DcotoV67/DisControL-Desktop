@@ -26,7 +26,6 @@ public class ShowDBChanges implements Runnable {
             e.printStackTrace();
 
         }
-
         DatabaseReference ref = fbs.getDb()
                 .getReference("/");
         ref.addValueEventListener(new ValueEventListener() {
